@@ -1,7 +1,7 @@
 {
   "feed_version": "1.0",
   "case_schema_version": "1.0",
-  "generated_at": "2026-09-12T11:00:00Z",
+  "generated_at": "2026-09-12T13:30:00Z",
   "policy": {
     "approved": "draft",
     "published": "publish"
@@ -12,7 +12,7 @@
       "path": "cases/e-017.json",
       "sha256": "a0985b05f437c984754c28be734d42faa208dcdf4d7e60606d08dd2bce320f7c",
       "status": "approved",
-      "featured_image_path": null
+      "featured_image_path": "images/fe-case-e017-why-the-resistor-burned.webp"
     }
   ]
 }
