@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0",
+  "case_id": "E-018",
+  "title": "The Parallel Load That Tripped the Supply",
+  "featured_title": "THE PARALLEL LOAD THAT TRIPPED THE SUPPLY",
+  "slug": "parallel-load-tripped-supply",
+  "exam": "fe",
+  "subject": "electrical-computer",
+  "topic": "circuit-analysis",
+  "concept": "parallel-circuits",
+  "status": "approved",
+  "difficulty": "intermediate",
+  "audience": "FE Electrical and Computer candidates and engineering students",
+  "official_source": "https://ncees.org/exams/fe-exam",
+  "presentation": {
+    "challenge": "Each branch looked safe. The supply still tripped the instant the second load was connected."
+  },
+  "case_dna": {
+    "target_misconception": "Adding a parallel branch only splits the existing source current, so the total source current cannot increase.",
+    "why_plausible": "Students often remember that current divides at a junction but forget that a voltage source maintains the same voltage across each parallel branch. Adding a branch lowers equivalent resistance and can therefore increase the current demanded from the source.",
+    "contradicting_evidence": "At 12 V, the 6 Ω branch requires 2 A and the 3 Ω branch requires 4 A. Together they demand 6 A from a source protected at 3 A.",
+    "corrected_model": "For parallel loads driven by a voltage source, each branch current is determined by the common branch voltage and that branch's resistance. Total source current is the sum of branch currents, so adding a parallel branch can increase source current.",
+    "overlaps_with": []
+  },
+  "problem_statement": "A 12 V supply with 3 A over-current protection powers a 6 Ω load normally at 2 A. A 3 Ω load is then added in parallel. The technician expects the original 2 A source current to split between the two branches, but the protection trips. Determine the branch currents, the current demanded from the source, and why the technician's current-division model fails.",
+  "fixed_constraints": [
+    "Load voltage remains 12 V during normal operation",
+    "Both loads must remain connected in parallel",
+    "The 6 Ω and 3 Ω load values remain unchanged"
+  ],
+  "gates": [
+    {
+      "id": "g1",
+      "type": "incident",
+      "label": "Incident",
+      "heading": "The first branch was safe. Adding another branch tripped the source.",
+      "facts": [
+        "Supply: 12 V with 3 A over-current protection",
+        "Existing branch: 6 Ω",
+        "Added branch: 3 Ω in parallel",
+        "Result: over-current protection activates when both branches are connected"
+      ],
+      "prompt": "If current divides in parallel, why did the current demanded from the source increase?",
+      "cta": "Inspect the current paths"
+    },
+    {
+      "id": "g2",
+      "type": "theory",
+      "label": "Theory",
+      "heading": "Commit a theory before the current measurements appear",
+      "options": [
+        {
+          "id": "split-fixed",
+          "label": "The original 2 A source current should simply split between the two branches",
+          "correct": false,
+          "reason": "The 2 A was the current required by the original 6 Ω load alone. With an ideal 12 V source, adding another parallel branch creates an additional current path; it does not fix the source current at 2 A."
+        },
+        {
+          "id": "voltage-drop",
+          "label": "Adding the branch must reduce the voltage across both loads",
+          "correct": false,
+          "reason": "The intended operating condition is a regulated 12 V source feeding parallel branches. Before protection acts, both branches are connected across the same source voltage; a branch is not added in series with the original load."
+        },
+        {
+          "id": "total-rises",
+          "label": "The added branch lowers equivalent resistance, so the current demanded from the source rises",
+          "correct": true,
+          "reason": "This matches the network model: 6 Ω in parallel with 3 Ω gives 2 Ω equivalent resistance, so a 12 V source is asked to supply 6 A."
+        },
+        {
+          "id": "short",
+          "label": "The 3 Ω branch must be a short circuit",
+          "correct": false,
+          "reason": "A 3 Ω load is not a short circuit. At 12 V it legitimately draws 4 A; the problem is the combined 6 A demand exceeding the source protection limit."
+        },
+        {
+          "id": "meter",
+          "label": "The protection circuit is probably faulty",
+          "correct": false,
+          "reason": "The protection behavior is consistent with the calculated load demand: the two branches require 6 A in total, which is above the 3 A protection threshold."
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "type": "prediction",
+      "label": "Predict",
+      "heading": "Predict the total current before the protection reacts",
+      "prompt": "With 12 V across both parallel branches, what total source current (A) does the network demand?",
+      "unit": "A"
+    },
+    {
+      "id": "g4",
+      "type": "experiment",
+      "label": "Experiment",
+      "heading": "Energize both parallel branches",
+      "visual": "meter",
+      "actual_value": 6,
+      "unit": "A",
+      "running_label": "MEASURING SOURCE CURRENT…",
+      "mid_label": "CURRENT DEMAND RISING",
+      "result_label": "OVER-CURRENT DETECTED",
+      "result": "The 6 Ω branch requires 2 A and the 3 Ω branch requires 4 A. Their sum is 6 A, which exceeds the 3 A protection threshold and causes the source to shut down."
+    },
+    {
+      "id": "g5",
+      "type": "calculation",
+      "label": "Gap",
+      "heading": "Prove the current demand from the network",
+      "prompt": "Find the equivalent resistance of 6 Ω in parallel with 3 Ω, then use I = V/Req for a 12 V source. Enter the total current demanded from the source.",
+      "expected": 6,
+      "tolerance": 0.05,
+      "unit": "A",
+      "success": "6 Ω || 3 Ω = 2 Ω, so the network demands 12/2 = 6 A from the source.",
+      "hint": "For two parallel resistors, Req = (R1R2)/(R1+R2), then use I = V/Req."
+    },
+    {
+      "id": "g6",
+      "type": "evidence",
+      "label": "Evidence",
+      "heading": "The branch calculations settle the argument",
+      "cards": [
+        {
+          "tag": "EVIDENCE 01",
+          "text": "Branch A: 12 V across 6 Ω requires 2 A."
+        },
+        {
+          "tag": "EVIDENCE 02",
+          "text": "Branch B: 12 V across 3 Ω requires 4 A."
+        },
+        {
+          "tag": "EVIDENCE 03",
+          "text": "Total current demand: 2 A + 4 A = 6 A, above the 3 A protection threshold."
+        }
+      ],
+      "correct_theory_id": "total-rises"
+    },
+    {
+      "id": "g7",
+      "type": "redline",
+      "label": "Redline",
+      "heading": "Redline the technician report",
+      "report": [
+        "C1. The 6 Ω load requires 2 A when connected across 12 V.",
+        "C2. The added 3 Ω load is connected in parallel with the existing branch.",
+        "C3. Because current divides in parallel, the original 2 A source current will be shared between the two branches and total source current will remain 2 A."
+      ],
+      "claims": [
+        {
+          "id": "c1",
+          "label": "C1",
+          "correct": false,
+          "reason": "C1 is supported by Ohm's law: 12 V / 6 Ω = 2 A."
+        },
+        {
+          "id": "c2",
+          "label": "C2",
+          "correct": false,
+          "reason": "C2 is a stated connection fact and is supported by the case configuration."
+        },
+        {
+          "id": "c3",
+          "label": "C3",
+          "correct": true,
+          "reason": "C3 incorrectly treats the original 2 A as a fixed total. In a voltage-driven parallel network, the new branch draws additional current and total source current becomes the sum of branch currents."
+        }
+      ],
+      "evidence_choices": [
+        {
+          "id": "e1",
+          "label": "The source voltage is 12 V across each parallel branch",
+          "correct": false,
+          "reason": "Equal branch voltage is important context, but by itself it does not quantify the contradiction in the claim that total current stays at 2 A."
+        },
+        {
+          "id": "e2",
+          "label": "Branch currents are 2 A and 4 A, so the network demands 6 A total",
+          "correct": true,
+          "reason": "This directly disproves the claim that the original 2 A total remains fixed: the branch currents sum to 6 A."
+        },
+        {
+          "id": "e3",
+          "label": "The 6 Ω resistor value did not change",
+          "correct": false,
+          "reason": "The unchanged 6 Ω value explains why its branch still requires 2 A, but it does not by itself prove the total source current after the second branch is added."
+        }
+      ],
+      "correction": {
+        "branch_a": 2,
+        "branch_b": 4,
+        "total": 6,
+        "template": "The original branch requires {branch_a} A and the new branch requires {branch_b} A, so the source is asked to supply {total} A — not a fixed 2 A split."
+      }
+    },
+    {
+      "id": "g8",
+      "type": "design_fix",
+      "label": "Design Fix",
+      "heading": "Keep both loads and prevent the source from tripping",
+      "constraint": "Keep 12 V across the loads and keep the 6 Ω and 3 Ω branches unchanged.",
+      "options": [
+        {
+          "id": "source",
+          "label": "Use a regulated 12 V source rated safely above the 6 A operating current, with appropriate margin",
+          "correct": true,
+          "reason": "This preserves both load values and their required 12 V while giving the source enough continuous-current capacity for the 6 A load demand plus design margin."
+        },
+        {
+          "id": "series",
+          "label": "Add a large series resistor so source current stays below 3 A",
+          "correct": false,
+          "reason": "A series resistor would reduce the voltage available to the parallel loads, violating the requirement to keep 12 V across them during normal operation."
+        },
+        {
+          "id": "remove",
+          "label": "Remove the 3 Ω branch",
+          "correct": false,
+          "reason": "Removing the second load avoids the current demand only by violating the requirement that both loads remain connected."
+        },
+        {
+          "id": "assume",
+          "label": "Keep the 3 A source because only individual branch current matters",
+          "correct": false,
+          "reason": "The source must carry the sum of branch currents. A 3 A source cannot support a 6 A total load demand at 12 V."
+        }
+      ]
+    },
+    {
+      "id": "g9",
+      "type": "transfer",
+      "label": "Transfer",
+      "heading": "Independent transfer — no hint",
+      "prompt": "A 10 V ideal source feeds one 10 Ω resistor. A second 10 Ω resistor is added in parallel. What happens to the total source current?",
+      "options": [
+        {
+          "id": "double",
+          "label": "It doubles",
+          "correct": true,
+          "reason": "Each 10 Ω branch draws 1 A at 10 V. With two branches, the source supplies 1 A + 1 A = 2 A, twice the original current."
+        },
+        {
+          "id": "half",
+          "label": "It halves",
+          "correct": false,
+          "reason": "Adding the second parallel branch halves equivalent resistance from 10 Ω to 5 Ω, so at fixed voltage the total current increases rather than decreases."
+        },
+        {
+          "id": "same",
+          "label": "It stays the same",
+          "correct": false,
+          "reason": "The source voltage stays 10 V while equivalent resistance falls from 10 Ω to 5 Ω, so total current changes from 1 A to 2 A."
+        },
+        {
+          "id": "zero",
+          "label": "It becomes zero",
+          "correct": false,
+          "reason": "Both branches remain connected across the source and each draws current; there is no open circuit condition."
+        }
+      ],
+      "explanation": "One 10 Ω branch draws 1 A. Two identical parallel branches each draw 1 A, so the source supplies 2 A."
+    },
+    {
+      "id": "g10",
+      "type": "signoff",
+      "label": "Sign Off",
+      "heading": "Sign off the current analysis",
+      "confirmation": "I confirm that parallel branch currents are determined by branch voltage and resistance, and total source current is their sum."
+    },
+    {
+      "id": "g11",
+      "type": "closed",
+      "label": "Closed",
+      "heading": "Concept Autopsy",
+      "items": [
+        {
+          "label": "What tripped it",
+          "value": "The added branch reduced equivalent resistance to 2 Ω, so the 12 V network demanded 6 A from a source protected at 3 A."
+        },
+        {
+          "label": "What was missed",
+          "value": "Current division does not mean total source current stays fixed when a voltage source drives a parallel network."
+        },
+        {
+          "label": "Corrected model",
+          "value": "Use the common branch voltage to calculate each branch current, then sum branch currents to obtain the source-current demand."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "seo_title": "Parallel Circuit Current: Why Adding a Load Raises Source Current | FE E-018",
+    "meta_description": "Solve FE Case E-018: a 12 V source trips after a 3 Ω load is added in parallel with 6 Ω. Calculate branch currents and the 6 A source demand.",
+    "focus_keyphrase": "parallel circuit current FE exam",
+    "excerpt": "Adding a parallel branch does not simply split a fixed source current. Investigate why a source protected at 3 A trips when a second load is connected.",
+    "direct_answer": "Adding a resistor in parallel can increase the total current demanded from a voltage source because the equivalent resistance decreases while the source voltage remains the same. Here, 6 Ω in parallel with 3 Ω equals 2 Ω, so the 12 V network demands 6 A.",
+    "faqs": [
+      {
+        "q": "Does adding a resistor in parallel increase total current?",
+        "a": "For a fixed-voltage source, adding a parallel resistance lowers equivalent resistance and therefore increases the total current demanded from the source."
+      },
+      {
+        "q": "What current flows through 6 Ω and 3 Ω parallel branches at 12 V?",
+        "a": "The 6 Ω branch requires 2 A and the 3 Ω branch requires 4 A, so the total source-current demand is 6 A."
+      },
+      {
+        "q": "Why does current division not mean total current stays fixed?",
+        "a": "Current division describes how an existing total current distributes among parallel paths. With a voltage source, adding another branch changes the network equivalent resistance, so the total source current can change."
+      }
+    ],
+    "related_keywords": [
+      "current division parallel circuit",
+      "parallel resistance FE practice",
+      "source current parallel loads",
+      "equivalent resistance parallel",
+      "parallel circuit questions with solutions"
+    ]
+  },
+  "practice": {
+    "primary_exam": "FE Electrical & Computer",
+    "content_origin": "original_fe_style",
+    "question_number": 2,
+    "primary_question": "Why can adding a parallel load increase the current demanded from a voltage source?",
+    "concepts_tested": [
+      "Parallel circuits",
+      "Equivalent resistance",
+      "Branch current",
+      "Current division",
+      "Source current"
+    ],
+    "skills_tested": [
+      "Circuit analysis",
+      "Equivalent-resistance calculation",
+      "Failure diagnosis",
+      "Evidence-based reasoning"
+    ],
+    "typical_exam_trap": "Treating the original source current as fixed and assuming a new parallel branch only redistributes that current.",
+    "canonical_url": "https://friedengineers.com/fe-exam-practice-questions/electrical-computer/circuit-analysis/parallel-load-tripped-supply/",
+    "parent_hub_url": "https://friedengineers.com/fe-exam-practice-questions/electrical-computer/circuit-analysis/"
+  },
+  "featured_image": {
+    "provider": "canva",
+    "design_id": "DAHU-fYKVdM",
+    "case_id_field": "CASE_ID",
+    "case_title_field": "CASE_TITLE",
+    "filename": "fe-case-e018-parallel-load-tripped-supply.png",
+    "alt": "FE Electrical practice Case E-018: The Parallel Load That Tripped the Supply"
+  },
+  "validation": {
+    "redline_requires_evidence": true,
+    "transfer_required": true,
+    "signoff_required": true,
+    "expected_completion_minutes": [
+      6,
+      10
+    ],
+    "qa_notes": [
+      "Math verified: 6 Ω || 3 Ω = 2 Ω; 12 V / 2 Ω = 6 A; branch currents 2 A and 4 A.",
+      "Source language uses current demanded from the network because real over-current protection may shut down, fold back, or current-limit rather than sustain 6 A.",
+      "Every theory, redline, design-fix, and transfer option includes reasoning for learner feedback.",
+      "Case maps to FE Electrical & Computer Circuit Analysis (DC and AC Steady State)."
+    ]
+  }
+}
