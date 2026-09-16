@@ -1,7 +1,7 @@
 {
   "feed_version": "1.0",
   "case_schema_version": "1.0",
-  "generated_at": "2026-09-16T07:30:00Z",
+  "generated_at": "2026-09-16T07:25:00Z",
   "policy": {
     "approved": "draft",
     "published": "publish"
@@ -11,20 +11,20 @@
       "case_id": "E-017",
       "path": "cases/e-017.json",
       "sha256": "a0985b05f437c984754c28be734d42faa208dcdf4d7e60606d08dd2bce320f7c",
-      "status": "approved",
+      "status": "published",
       "featured_image_path": "images/fe-case-e017-why-the-resistor-burned.webp"
     },
     {
       "case_id": "E-018",
       "path": "cases/e-018.json",
       "sha256": "76791c5384b6e0ead4fdc0800e6f556211b413641b7e87e933b4bb736c9b73a6",
-      "status": "approved"
+      "status": "published"
     },
     {
       "case_id": "E-019",
       "path": "cases/e-019.json",
       "sha256": "f18542a1785403f278e48ea101eefd373aa02caa9c411f8f016708e8edc1e535",
-      "status": "approved"
+      "status": "published"
     }
   ]
 }
