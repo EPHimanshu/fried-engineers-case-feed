@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.0",
+  "case_id": "E-019",
+  "title": "The Voltage Divider That Collapsed Under Load",
+  "featured_title": "THE VOLTAGE DIVIDER THAT COLLAPSED UNDER LOAD",
+  "slug": "voltage-divider-loading-effect",
+  "exam": "fe",
+  "subject": "electrical-computer",
+  "topic": "circuit-analysis",
+  "concept": "voltage-divider-loading",
+  "status": "approved",
+  "difficulty": "intermediate",
+  "audience": "FE Electrical and Computer candidates and engineering students",
+  "official_source": "https://ncees.org/exams/fe-exam",
+  "presentation": {
+    "challenge": "The divider measured exactly 6 V with no load. Connect one load, and the output falls to 4 V."
+  },
+  "case_dna": {
+    "target_misconception": "A voltage-divider output stays fixed after a finite load is connected because the two divider resistors themselves have not changed.",
+    "why_plausible": "Students often memorize the unloaded divider formula and treat the output node as if it were an ideal voltage source. A finite load becomes part of the lower leg and changes the network being solved.",
+    "contradicting_evidence": "A 10 kΩ load placed across the 10 kΩ lower divider resistor makes the effective lower leg 5 kΩ, so the output becomes 12 × 5/(10+5) = 4 V rather than 6 V.",
+    "corrected_model": "Before applying the voltage-divider equation, include the connected load in the circuit model. Reduce the loaded lower leg to its equivalent resistance, then calculate the divider output.",
+    "overlaps_with": []
+  },
+  "problem_statement": "A 12 V source feeds a divider made from a 10 kΩ top resistor and a 10 kΩ lower resistor. The midpoint measures 6 V with no load. A 10 kΩ load is then connected from the midpoint to ground, and the output falls to 4 V. Diagnose why the unloaded calculation no longer applies and choose a correction that restores 6 V for this known load.",
+  "fixed_constraints": [
+    "Supply remains 12 V",
+    "Load remains 10 kΩ from output to ground",
+    "Required loaded output is 6 V"
+  ],
+  "gates": [
+    {
+      "id": "g1",
+      "type": "incident",
+      "label": "Incident",
+      "heading": "The divider was correct until the load was connected.",
+      "facts": [
+        "Supply: 12 V",
+        "Top resistor: 10 kΩ",
+        "Lower resistor: 10 kΩ",
+        "Unloaded midpoint: 6 V",
+        "Connected load: 10 kΩ from midpoint to ground",
+        "Loaded midpoint: 4 V"
+      ],
+      "prompt": "The source and divider resistors did not change. What did the load change in the circuit model?",
+      "cta": "Inspect the loaded network"
+    },
+    {
+      "id": "g2",
+      "type": "theory",
+      "label": "Theory",
+      "heading": "Choose the best explanation before reducing the network",
+      "options": [
+        {
+          "id": "loading",
+          "label": "The load is in parallel with the lower resistor and changes the divider ratio",
+          "correct": true,
+          "reason": "This is the loaded-network model. The lower 10 kΩ resistor in parallel with the 10 kΩ load becomes 5 kΩ, so the divider ratio changes."
+        },
+        {
+          "id": "source",
+          "label": "The 12 V source must have dropped to 8 V when the load was connected",
+          "correct": false,
+          "reason": "The case states the source remains 12 V. The output change is explained by the added load changing the lower-leg equivalent resistance."
+        },
+        {
+          "id": "unchanged",
+          "label": "The output should remain 6 V because the two divider resistors are still 10 kΩ each",
+          "correct": false,
+          "reason": "This ignores the load. Once connected, the load is electrically in parallel with the lower resistor, so the actual lower leg is no longer 10 kΩ."
+        },
+        {
+          "id": "meter",
+          "label": "The 4 V reading must be a meter error because the unloaded divider formula gives 6 V",
+          "correct": false,
+          "reason": "The 4 V reading matches the loaded-circuit calculation exactly. The error is applying an unloaded model to a loaded network."
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "type": "prediction",
+      "label": "Predict",
+      "heading": "Predict the loaded output before calculating it",
+      "prompt": "With a 10 kΩ load connected across the 10 kΩ lower resistor, what output voltage (V) do you expect?",
+      "unit": "V"
+    },
+    {
+      "id": "g4",
+      "type": "experiment",
+      "label": "Experiment",
+      "heading": "Connect the 10 kΩ load",
+      "visual": "meter",
+      "actual_value": 4,
+      "unit": "V",
+      "running_label": "MEASURING LOADED OUTPUT…",
+      "mid_label": "OUTPUT VOLTAGE FALLING",
+      "result_label": "LOADING EFFECT CONFIRMED",
+      "result": "The midpoint settles at 4 V with the 10 kΩ load connected, even though it was 6 V unloaded."
+    },
+    {
+      "id": "g5",
+      "type": "calculation",
+      "label": "Gap",
+      "heading": "Prove the loaded output",
+      "prompt": "First reduce the lower leg: 10 kΩ || 10 kΩ = 5 kΩ. Then calculate Vout = 12 × 5/(10+5). Enter the loaded output voltage.",
+      "expected": 4,
+      "tolerance": 0.05,
+      "unit": "V",
+      "success": "10 kΩ || 10 kΩ = 5 kΩ, so Vout = 12 × 5/(10+5) = 4 V.",
+      "hint": "The load is in parallel with the lower divider resistor. Reduce that pair before using the divider equation."
+    },
+    {
+      "id": "g6",
+      "type": "evidence",
+      "label": "Evidence",
+      "heading": "The reduced circuit shows what changed",
+      "cards": [
+        {
+          "tag": "EVIDENCE 01",
+          "text": "Lower leg under load: 10 kΩ || 10 kΩ = 5 kΩ."
+        },
+        {
+          "tag": "EVIDENCE 02",
+          "text": "Loaded divider: Vout = 12 × 5/(10+5) = 4 V."
+        },
+        {
+          "tag": "EVIDENCE 03",
+          "text": "The 12 V source and the original two divider resistor values remain unchanged."
+        }
+      ],
+      "correct_theory_id": "loading"
+    },
+    {
+      "id": "g7",
+      "type": "redline",
+      "label": "Redline",
+      "heading": "Correct the design note",
+      "report": [
+        "C1. A 12 V source with two equal 10 kΩ divider resistors produces 6 V when unloaded.",
+        "C2. A 10 kΩ load is connected from the midpoint to ground.",
+        "C3. Because the two divider resistors are still equal, the output remains 6 V after the load is connected."
+      ],
+      "claims": [
+        {
+          "id": "c1",
+          "label": "C1",
+          "correct": false,
+          "reason": "C1 is correct for the unloaded divider: equal resistors split 12 V to 6 V."
+        },
+        {
+          "id": "c2",
+          "label": "C2",
+          "correct": false,
+          "reason": "C2 is a stated connection fact and is part of the loaded-circuit model."
+        },
+        {
+          "id": "c3",
+          "label": "C3",
+          "correct": true,
+          "reason": "C3 ignores the load's electrical effect. The load parallels the lower resistor, changing the effective lower leg from 10 kΩ to 5 kΩ and the output from 6 V to 4 V."
+        }
+      ],
+      "evidence_choices": [
+        {
+          "id": "e1",
+          "label": "The loaded lower leg is 10 kΩ || 10 kΩ = 5 kΩ, giving 4 V output",
+          "correct": true,
+          "reason": "This directly shows why the 6 V unloaded result no longer applies: the lower-leg resistance and divider ratio changed under load."
+        },
+        {
+          "id": "e2",
+          "label": "The source remains 12 V",
+          "correct": false,
+          "reason": "This rules out source sag as the explanation, but it does not by itself show why the divider output becomes 4 V."
+        },
+        {
+          "id": "e3",
+          "label": "The original top resistor is still 10 kΩ",
+          "correct": false,
+          "reason": "The top resistor staying unchanged is true, but the load changes the lower leg, which is the missing part of the model."
+        }
+      ],
+      "correction": {
+        "lower_eq": 5,
+        "loaded_v": 4,
+        "template": "With the 10 kΩ load connected, the effective lower resistance is {lower_eq} kΩ and the loaded output is {loaded_v} V — not 6 V."
+      }
+    },
+    {
+      "id": "g8",
+      "type": "design_fix",
+      "label": "Design Fix",
+      "heading": "Restore 6 V for the known 10 kΩ load",
+      "constraint": "Keep the 12 V source, the 10 kΩ load, and a passive two-resistor divider.",
+      "options": [
+        {
+          "id": "5k10k",
+          "label": "Use a 5 kΩ top resistor and a 10 kΩ lower resistor",
+          "correct": true,
+          "reason": "With the 10 kΩ load, the lower leg is 10 kΩ || 10 kΩ = 5 kΩ. A 5 kΩ top resistor and 5 kΩ effective lower leg split 12 V equally, producing 6 V under the stated load."
+        },
+        {
+          "id": "10k10k",
+          "label": "Keep 10 kΩ top and 10 kΩ lower resistors",
+          "correct": false,
+          "reason": "Under the 10 kΩ load, the effective lower leg remains 5 kΩ, so the loaded output remains 4 V."
+        },
+        {
+          "id": "20k10k",
+          "label": "Increase the top resistor to 20 kΩ and keep the lower resistor at 10 kΩ",
+          "correct": false,
+          "reason": "The loaded lower leg is still 5 kΩ, so Vout becomes 12 × 5/(20+5) = 2.4 V, farther from the 6 V requirement."
+        },
+        {
+          "id": "remove-load",
+          "label": "Disconnect the 10 kΩ load whenever 6 V is required",
+          "correct": false,
+          "reason": "That restores the unloaded 6 V only by violating the requirement that the 10 kΩ load remain connected."
+        }
+      ]
+    },
+    {
+      "id": "g9",
+      "type": "transfer",
+      "label": "Transfer",
+      "heading": "Apply the loading rule to a new divider",
+      "prompt": "A divider has a finite load connected from its output node to ground. Compared with the unloaded case, what usually happens when that load is comparable to the lower divider resistance?",
+      "options": [
+        {
+          "id": "drops",
+          "label": "The output drops because the effective lower resistance decreases",
+          "correct": true,
+          "reason": "A finite load in parallel with the lower resistor reduces the effective lower-leg resistance and therefore reduces the divider ratio."
+        },
+        {
+          "id": "same",
+          "label": "The output stays exactly the same because the divider resistors did not change",
+          "correct": false,
+          "reason": "The load becomes part of the network. The original divider resistors may be unchanged physically, but the effective lower-leg resistance changes."
+        },
+        {
+          "id": "rises",
+          "label": "The output always rises because another resistor was added",
+          "correct": false,
+          "reason": "A load from output to ground parallels the lower resistor, reducing that resistance and normally lowering the output voltage."
+        },
+        {
+          "id": "zero",
+          "label": "The output must become zero for any finite load",
+          "correct": false,
+          "reason": "A finite load changes the divider ratio, but it does not short the output unless the load resistance approaches zero."
+        }
+      ],
+      "explanation": "A finite load connected across the lower divider resistor reduces the effective lower resistance and changes the divider ratio."
+    },
+    {
+      "id": "g10",
+      "type": "signoff",
+      "label": "Sign Off",
+      "heading": "Sign off the loaded-divider analysis",
+      "confirmation": "I confirm that the connected load must be included in the circuit model before applying the voltage-divider equation."
+    },
+    {
+      "id": "g11",
+      "type": "closed",
+      "label": "Closed",
+      "heading": "Concept Autopsy",
+      "items": [
+        {
+          "label": "What changed",
+          "value": "The 10 kΩ load paralleled the 10 kΩ lower resistor, reducing the effective lower leg to 5 kΩ."
+        },
+        {
+          "label": "What was missed",
+          "value": "The unloaded divider formula was applied after the load changed the network."
+        },
+        {
+          "label": "Corrected model",
+          "value": "Reduce the actual loaded network first, then calculate Vout from the resulting divider ratio."
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "seo_title": "Voltage Divider Loading Effect: Why 6 V Drops to 4 V | FE E-019",
+    "meta_description": "Solve FE Case E-019: a 12 V, 10 kΩ–10 kΩ divider gives 6 V unloaded but 4 V with a 10 kΩ load. Diagnose the loading effect and fix it.",
+    "focus_keyphrase": "voltage divider loading effect FE exam",
+    "excerpt": "A divider can be mathematically correct when unloaded and still miss its target once a finite load is connected. Diagnose why 6 V falls to 4 V.",
+    "direct_answer": "A finite load changes a voltage divider because it becomes part of the lower leg. Here, a 10 kΩ load in parallel with the 10 kΩ lower resistor gives 5 kΩ, so Vout = 12 × 5/(10+5) = 4 V instead of 6 V.",
+    "faqs": [
+      {
+        "q": "Why does a voltage divider output drop under load?",
+        "a": "A load connected from the output to ground is in parallel with the lower divider resistor. That reduces the effective lower resistance and changes the divider ratio."
+      },
+      {
+        "q": "What is 10 kΩ in parallel with 10 kΩ?",
+        "a": "The equivalent resistance is 5 kΩ."
+      },
+      {
+        "q": "How do you calculate a loaded voltage divider?",
+        "a": "First combine the load with the resistor it parallels, then use that equivalent resistance in the voltage-divider equation."
+      }
+    ],
+    "related_keywords": [
+      "loaded voltage divider",
+      "voltage divider loading effect",
+      "FE circuit analysis voltage divider",
+      "parallel resistance divider",
+      "voltage divider questions with solutions"
+    ]
+  },
+  "practice": {
+    "primary_exam": "FE Electrical & Computer",
+    "content_origin": "original_fe_style",
+    "question_number": 3,
+    "primary_question": "Why does a voltage divider output change when a finite load is connected?",
+    "concepts_tested": [
+      "Voltage divider",
+      "Parallel resistance",
+      "Loading effect",
+      "Equivalent resistance",
+      "Loaded circuit"
+    ],
+    "skills_tested": [
+      "Equivalent-resistance calculation",
+      "Voltage-divider analysis",
+      "Loaded-network reasoning",
+      "Design correction"
+    ],
+    "typical_exam_trap": "Using the unloaded divider formula after a finite load has changed the lower-leg resistance.",
+    "canonical_url": "https://friedengineers.com/fe-exam-practice-questions/electrical-computer/circuit-analysis/voltage-divider-loading-effect/",
+    "parent_hub_url": "https://friedengineers.com/fe-exam-practice-questions/electrical-computer/circuit-analysis/"
+  },
+  "featured_image": {
+    "provider": "canva",
+    "design_id": "DAHU-fYKVdM",
+    "case_id_field": "CASE_ID",
+    "case_title_field": "CASE_TITLE",
+    "filename": "fe-case-e019-voltage-divider-loading-effect.png",
+    "alt": "FE Electrical practice Case E-019: The Voltage Divider That Collapsed Under Load"
+  },
+  "validation": {
+    "redline_requires_evidence": true,
+    "transfer_required": true,
+    "signoff_required": true,
+    "expected_completion_minutes": [
+      6,
+      10
+    ],
+    "qa_notes": [
+      "Math verified: 10 kΩ || 10 kΩ = 5 kΩ; loaded Vout = 12 × 5/(10+5) = 4 V.",
+      "Design correction verified for the stated fixed 10 kΩ load: 5 kΩ top with 10 kΩ lower gives a 5 kΩ loaded lower leg and 6 V output.",
+      "The design fix is explicitly limited to a known fixed load and passive two-resistor divider.",
+      "Every theory, redline, design-fix, and transfer option includes reasoning for learner feedback.",
+      "Case maps to FE Electrical & Computer Circuit Analysis (DC and AC Steady State)."
+    ]
+  }
+}
