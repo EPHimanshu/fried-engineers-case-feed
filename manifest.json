@@ -1,66 +1,23 @@
 {
   "feed_version": "1.0",
   "case_schema_version": "1.0",
-  "generated_at": "2026-09-17T07:35:00Z",
+  "generated_at": "2026-09-17T10:35:00Z",
   "policy": {
     "approved": "draft",
     "published": "publish"
   },
   "cases": [
-    {
-      "case_id": "E-017",
-      "path": "cases/e-017.json",
-      "sha256": "a0985b05f437c984754c28be734d42faa208dcdf4d7e60606d08dd2bce320f7c",
-      "status": "published",
-      "featured_image_path": "images/fe-case-e017-why-the-resistor-burned.webp"
-    },
-    {
-      "case_id": "E-018",
-      "path": "cases/e-018.json",
-      "sha256": "76791c5384b6e0ead4fdc0800e6f556211b413641b7e87e933b4bb736c9b73a6",
-      "status": "published"
-    },
-    {
-      "case_id": "E-019",
-      "path": "cases/e-019.json",
-      "sha256": "f18542a1785403f278e48ea101eefd373aa02caa9c411f8f016708e8edc1e535",
-      "status": "published"
-    },
-    {
-      "case_id": "E-020",
-      "path": "cases/e-020.json",
-      "sha256": "b98633d470063b3af07384527d885bcd6c141587455794c19f80711cf03a276d",
-      "status": "published"
-    },
-    {
-      "case_id": "E-021",
-      "path": "cases/e-021.json",
-      "sha256": "78b63e3a880337a752f8149ade8767b9ea4f9331e426c11cdf5a07f990c2e03d",
-      "status": "published"
-    },
-    {
-      "case_id": "E-022",
-      "path": "cases/e-022.json",
-      "sha256": "ca32cf56741daf8cf0e9a879437a181528c3981e1e46b6952bb77584b42417c2",
-      "status": "published"
-    },
-    {
-      "case_id": "E-023",
-      "path": "cases/e-023.json",
-      "sha256": "73646611cb5b56d9b6ce402f8e7f060fd1078b0678a6ecbcdef50139e2b177ad",
-      "status": "published"
-    },
-    {
-      "case_id": "E-024",
-      "path": "cases/e-024.json",
-      "sha256": "379830b0d10ff837970fc7d4db5ba7a9db5c4db1a1d27650ef9d45001de10cf0",
-      "status": "published"
-    },
-    {
-      "case_id": "E-025",
-      "path": "cases/e-025.json",
-      "sha256": "befad8d2e35532b2d71d68cd2f90acf568e07311ceb681d034310296fbf3b01c",
-      "status": "published"
-    }
+    {"case_id":"E-017","path":"cases/e-017.json","sha256":"a0985b05f437c984754c28be734d42faa208dcdf4d7e60606d08dd2bce320f7c","status":"published","featured_image_path":"images/fe-case-e017-why-the-resistor-burned.webp"},
+    {"case_id":"E-018","path":"cases/e-018.json","sha256":"76791c5384b6e0ead4fdc0800e6f556211b413641b7e87e933b4bb736c9b73a6","status":"published"},
+    {"case_id":"E-019","path":"cases/e-019.json","sha256":"f18542a1785403f278e48ea101eefd373aa02caa9c411f8f016708e8edc1e535","status":"published"},
+    {"case_id":"E-020","path":"cases/e-020.json","sha256":"b98633d470063b3af07384527d885bcd6c141587455794c19f80711cf03a276d","status":"published"},
+    {"case_id":"E-021","path":"cases/e-021.json","sha256":"78b63e3a880337a752f8149ade8767b9ea4f9331e426c11cdf5a07f990c2e03d","status":"published"},
+    {"case_id":"E-022","path":"cases/e-022.json","sha256":"ca32cf56741daf8cf0e9a879437a181528c3981e1e46b6952bb77584b42417c2","status":"published"},
+    {"case_id":"E-023","path":"cases/e-023.json","sha256":"73646611cb5b56d9b6ce402f8e7f060fd1078b0678a6ecbcdef50139e2b177ad","status":"published"},
+    {"case_id":"E-024","path":"cases/e-024.json","sha256":"379830b0d10ff837970fc7d4db5ba7a9db5c4db1a1d27650ef9d45001de10cf0","status":"published"},
+    {"case_id":"E-025","path":"cases/e-025.json","sha256":"befad8d2e35532b2d71d68cd2f90acf568e07311ceb681d034310296fbf3b01c","status":"published"},
+    {"case_id":"E-026","path":"cases/e-026.json","sha256":"2de4ffafccec749fcb648bab79f0675e283a34144689c917fb7c89f4a5273ec2","status":"published"},
+    {"case_id":"E-027","path":"cases/e-027.json","sha256":"79b579397e736a0ef3f66ba0e9fc97bb2d897acbb619b974a7e9339746943883","status":"published"},
+    {"case_id":"E-028","path":"cases/e-028.json","sha256":"24042ae11eebdafbaa7970809b18bbacc8a6b5bd5fed946e895f318a74234398","status":"published"}
   ]
 }
