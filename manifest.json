@@ -1,7 +1,7 @@
 {
   "feed_version": "1.0",
   "case_schema_version": "1.0",
-  "generated_at": "2026-10-08T11:47:56.405Z",
+  "generated_at": "2026-10-19T06:23:58.605Z",
   "policy": {
     "approved": "draft",
     "published": "publish"
@@ -546,6 +546,24 @@
       "case_id": "E-106",
       "path": "cases/e-106.json",
       "sha256": "aa18c069551f18d6fd012aa4889c463cb5dfe9abc59c08f2dabe60387cdd2008",
+      "status": "published"
+    },
+    {
+      "case_id": "E-107",
+      "path": "cases/e-107.json",
+      "sha256": "1c5a173c913ae670361d7cfd7641be126a08258e85777c8e51af3889831b7119",
+      "status": "published"
+    },
+    {
+      "case_id": "E-108",
+      "path": "cases/e-108.json",
+      "sha256": "6e16cd3ca950114d01360649c70cf4a2181d2703f4960fb7c360db88bfa14e2a",
+      "status": "published"
+    },
+    {
+      "case_id": "E-109",
+      "path": "cases/e-109.json",
+      "sha256": "d17d1fbe501de97d4935453a10c5ee562e234fc544dc9328646f7560d76b8cf4",
       "status": "published"
     }
   ]
